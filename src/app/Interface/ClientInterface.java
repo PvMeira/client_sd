@@ -1,6 +1,5 @@
 package app.Interface;
 
-import app.model.*;
 import app.model.Menu;
 import app.model.MenuItem;
 
@@ -13,43 +12,43 @@ import java.util.*;
  * Created by pvmeira on 24/06/17.
  */
 public class ClientInterface extends JFrame {
-    private JPanel painelFundo;
-    private JTable tabela;
-    private JScrollPane barraRolagem;
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private JPanel jPanel;
+    private JTable jTable;
+    private JScrollPane jScrollPane;
+    private DefaultTableModel model = new DefaultTableModel();
 
 
     public ClientInterface() {
         super("Produtos");
-        criaJTable();
-        criaJanela();
+        createJTable();
+        createWindow();
     }
 
-    public void criaJanela() {
-        barraRolagem = new JScrollPane(tabela);
-        painelFundo = new JPanel();
-        painelFundo.setLayout(new BorderLayout());
-        painelFundo.add(BorderLayout.CENTER, barraRolagem);
+    public void createWindow() {
+        jScrollPane = new JScrollPane(jTable);
+        jPanel = new JPanel();
+        jPanel.setLayout(new BorderLayout());
+        jPanel.add(BorderLayout.CENTER, jScrollPane);
 
-        getContentPane().add(painelFundo);
+        getContentPane().add(jPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 320);
         setVisible(true);
 
     }
 
-    private void criaJTable() {
-        tabela = new JTable(modelo);
-        modelo.addColumn("Id");
-        modelo.addColumn("Nome");
-        modelo.addColumn("Valor");
-        tabela.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tabela.getColumnModel().getColumn(1).setPreferredWidth(120);
-        tabela.getColumnModel().getColumn(1).setPreferredWidth(80);
-        pesquisar(modelo);
+    private void createJTable() {
+        jTable = new JTable(model);
+        model.addColumn("Id");
+        model.addColumn("Nome");
+        model.addColumn("Valor");
+        jTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTable.getColumnModel().getColumn(1).setPreferredWidth(120);
+        jTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+        serachMenu(model);
     }
 
-    public void pesquisar(DefaultTableModel modelo) {
+    public void serachMenu(DefaultTableModel modelo) {
         modelo.setNumRows(0);
         for (MenuItem m : getList().getItems()) {
             modelo.addRow(new Object[]{m.getId(), m.getName(), m.getPrice()});
