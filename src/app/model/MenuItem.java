@@ -7,8 +7,10 @@ public class MenuItem {
     private String id;
     private String name;
     private double price;
+    private Boolean buy = Boolean.FALSE;
 
-    public MenuItem(String id, String name, double price) {
+    public MenuItem(Boolean b, String id, String name, double price) {
+        this.buy = b;
         this.id = id;
         this.name = name;
         this.price = price;
@@ -42,6 +44,14 @@ public class MenuItem {
     public boolean equals(Object obj) {
         MenuItem item = (MenuItem) obj;
         return id.equalsIgnoreCase(item.id);
+    }
+
+    public Boolean getBuy() {
+        return buy;
+    }
+
+    public void setBuy(Boolean buy) {
+        this.buy = buy;
     }
 }
 
